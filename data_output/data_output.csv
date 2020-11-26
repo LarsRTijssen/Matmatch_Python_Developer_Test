@@ -1,0 +1,7 @@
+source,name,internalId,baseMaterial,linearCoefficientOfThermalExpansion,thermalConductivity,fractureToughness,density,specificVolumetricSusceptibility,meltingPoint
+https://www.ceramtec.com/ceramic-materials/zirconium-oxide/,Zirconium Oxide (ZrO2),MAMAC001,Zirconium Oxide,0.000011,"2.5,3","6.5,8",,,
+http://matweb.com/search/DataSheet.aspx?MatGUID=0742ddaddf80467fb6532e025c694e89&ckck=1,"
+Zirconium Oxide, Zirconia, ZrO2",MAMAC002,Zirconium Oxide,0.000007,1.675,,5.68,-0.0000138,"2681,2847"
+https://germany.kida.co.jp/ceramic/material_zirconia.htm,Zirconium Oxide (ZrO 2 ),MAMAC003,Zirconium Oxide,"0.0000079,0.000011","2.7,3",,,,
+https://www.moeschter-group.com/en/materials/zirconium-oxide/,ZrO2 Y-PSZ,MAMAC004,Zirconium Oxide,0.00001;20,,6.04;23,,,
+https://www.americanelements.com/zirconium-oxide-1314-23-4,Zirconium Oxide,MAMAC005,Zirconium Oxide,0.0000105,,,,,2715
