@@ -103,11 +103,11 @@ def test_cleaning():
 		print('step5 = {}'.format(d.values))
 
 		# operation 6
-		d = to_standard_unit(d, su, ureg)
+		d = unit_to_standard_unit(d, su, ureg)
 		print('step6 = {}'.format(d.values))
 
 		# operation 7
-		d = to_decimal_string(d)
+		d = num_to_decimal_string(d)
 		print('step7 = {}'.format(d.values))
 
 		# operation 8
@@ -115,6 +115,6 @@ def test_cleaning():
 		print('final = {}'.format(d.values))
 		print('expct = {}'.format(dc.values))
 
-		pdt.assert_series_equal(d, dc)
+		pdt.assert_series_equal(d, c)
 
 		print('-'*100)

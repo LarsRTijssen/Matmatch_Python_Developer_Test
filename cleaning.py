@@ -158,7 +158,7 @@ def convert_value(_num, _unit, _std_unit, unitreg):
     return unitreg.Quantity(_num, units = _unit).to(_std_unit).magnitude
 
 
-def to_standard_unit(df, standard_unit, unitreg):
+def unit_to_standard_unit(df, standard_unit, unitreg):
     '''
     Convert num1 and num2 from unit to standard_unit
     input is a pandas dataframe
@@ -173,18 +173,18 @@ def to_standard_unit(df, standard_unit, unitreg):
     return df
 
 
-def convert_float_to_decimal_string(num):
+def convert_float_num_to_decimal_string(num):
     return "{:.8f}".format(num).rstrip('0').rstrip('.')
 
 
-def to_decimal_string(df):
+def num_to_decimal_string(df):
     '''
     Convert num1 and num2 from float to decimal string
     input is a pandas dataframe
     output is a pandas dataframe
     '''
     # apply function to num1 and num2 
-    df.loc[:, ['num1','num2']] = df[['num1','num2']].applymap(convert_float_to_decimal_string)
+    df.loc[:, ['num1','num2']] = df[['num1','num2']].applymap(convert_float_num_to_decimal_string)
 
     # convert num1 and num2 nans back to empty strings
     df.loc[:,'num1'][df['num1'] == 'nan'] = ''
@@ -233,8 +233,8 @@ def clean_series(data, standard_unit):
     data = clean_extractions(data, std_unit)
     data = clean_units(data)
     data = combine_num_pow(data)
-    data = to_standard_unit(data, std_unit, ureg)
-    data = to_decimal_string(data)
+    data = unit_to_standard_unit(data, std_unit, ureg)
+    data = num_to_decimal_string(data)
     data = combine_strings(data)
     
     return data
