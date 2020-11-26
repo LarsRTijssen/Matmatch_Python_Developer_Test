@@ -10,7 +10,7 @@ def clean_standard_units(std_unit):
     output is a string
     '''
     rules = [['√([a-zA-Z]+)',r'\1^(1/2)'],  # convert square root sign to exponent (√m to m^(1/2))  
-             ['\[-\]','']]              # convert dimensionless units to empty string
+             ['\[-\]','']]                  # convert dimensionless units to empty string
 
     for i, o in rules:
         std_unit = re.sub(i, o, std_unit)
@@ -27,12 +27,14 @@ def pre_cleaning(s):
 
 
     # list of rules to replace in the data
-    rules = [[' ',''],                          # remove whitespaces
-             ['([1-9]),',r'\1'],       # remove comma used as thousand separator
-             ['0,','0.'],                       # comma used as decimal separator to dot
-             ['[Xx]','*'],                      # multiplier x or X to *
-             ['\*10[\^]?(-)?(\d+)',r'e\1\2']]   # *10-6,*10^-6,*106 to e-6
+    rules = [[' ',''],                              # remove whitespaces
+             ['([1-9]),',r'\1'],                    # remove comma used as thousand separator
+             ['0,','0.'],                           # comma used as decimal separator to dot
+             ['[Xx]','*'],                          # multiplier x or X to *
+             ['\*10[\^]?(-)?([0-9]+)',r'e\1\2'],    # *10-6,*10^-6,*106 to e-6
+             ['([0-9]+)E(-)?([0-9]+)',r'\1e\2\3']]  # E-6 to e-6
 
+    # loop over rules
     for i, o in rules:
         s = s.str.replace(i, o, regex = True)
 
@@ -50,9 +52,9 @@ def extract_groups(s):
     # define regex groups
     regex_num = '([-+]?[0-9]*[.]?[0-9]+)' # decimal number ex. 10, 1.2, -0.31
     regex_pow = '(e[-]?[0-9]+)'           # power number ex. e6 or e-6
-    regex_sep = '(-|to)'                  # separator in case a range is given
-    regex_unit = '(.*?(?=for|@|$))'       # detect unit (basically the rest unless assocatiated temp is given)
-    regex_sep_at = '(for|@)'              # separator in case an associated temp is given
+    regex_sep = '(-|to(?=[0-9]))'         # separator in case a range is given
+    regex_unit = '(.*?(?=for|at|@|$))'    # detect unit (basically the rest unless assocatiated temp is given)
+    regex_sep_at = '(for|at|@)'           # separator in case an associated temp is given
     regex_unit_at = '(.+$)'               # detect unit of associated temp (basically the rest)
 
     # define extract statement 
@@ -114,6 +116,7 @@ def clean_units(df):
              ['([Mm])([Pp])am', r'\1\2a m'],
              ['([a-zA-Z]+)([0-9]+)/([0-9]+)', r'\1^(\2/\3)']]
 
+    # loop over rules
     for i, o in rules:
         df.loc[:,'unit'] = df['unit'].str.replace(i, o, regex = True)
 

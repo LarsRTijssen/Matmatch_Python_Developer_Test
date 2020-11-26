@@ -1,19 +1,33 @@
-# this is a list of input for the function pre-cleaning
+# this is a list of input for the cleaning pipeline
 
-11 x 10-6/K
-7.00 µm/m-°C
-7.9 - 11 x10 -6 / ° C
-10x10 -6 / ° C for 20C
-10.5 x 10-6/°C
+# input							standard_unit
+11 x 10-6/K						1/K
+7.00 µm/m-°C					1/K
+7.9 - 11 x10 -6 / ° C			1/K
+10x10 -6 / ° C for 20C			1/K
+10.5 x 10-6/°C					1/K
+2.5 to 3 W/mK					W/(m*K)
+1.675 W/m-K						W/(m*K)
+2.7 - 3.0						W/(m*K)
+6.5 to 8 MPam1/2				MPa·√m
+>6.04@23C						MPa·√m
+-0,0000138						[-]
+2681 - 2847 °C					°C
+4,919° F						°C
 
 
-######## commented
-#2681 - 2847 °C
-#4,919° F
-#2.5 to 3 W/mK
-#1.675 W/m-K
-#2.7 - 3.0
-#6.5 to 8 MPam1/2
-#>6.04@23C
-#5.68 g/cc
-#-0.0000138
+######## extra
+# length
+5 km							m
+11-13 ft						m
+7.5 inch						m
+3.2-4.3 yd						m
+
+# pressure
+60000 Pa						hPa
+760 torr						hPa
+
+# mixed
+4E-7 Ω·m at 20 °C				Ω·m
+460 - 500 J/(kg·K) at 20 °C		J/(kg*K)
+

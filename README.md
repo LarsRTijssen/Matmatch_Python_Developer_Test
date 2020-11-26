@@ -1,7 +1,63 @@
 # Python Developer Test
 
-## Instructions
+This program is designed to import, clean and export a given excel file with material data.
 
+
+## structure
+
+The structure of the top level main.py is as follows:
+
+- load data
+Loads the data from an excel sheet. This can be either from `data_input.xlsx` or a given location (see instructions below).
+
+- clean_data
+Cleans the data from `Ceramic Raw Data` and the standard unit from `material_property_map`
+
+- export_data
+Export the data to `./data_output` in a certain format that can be chosen.
+
+
+The bulk of the work is done in clean_data. As the name suggests this cleaning pipeline deals with cleaning the data and is divided into several functions. Each function gives its output to the next function as input
+
+pre_cleaning
+extract_groups
+clean_extractions
+clean_units
+combine_num_pow
+to_standard_unit
+to_decimal_string
+combine_strings
+
+
+The first operation is to standardise the standard units with the version from `pint`
+
+clean_standard_units
+
+
+
+
+
+
+It is important that the structure of the excel sheet stays intact: New variations and columns can be added but standard unit must be declared on the `material_property_map` excel sheet (basically number of variables on `material_property_map` must match the number of variables on `Ceramic Raw Data`)
+
+## unit testing
+
+a few functions are present in the `unit_tests.py`. This file is run before `main.py` so tests will always be conducted before the program runs.
+
+ - `test_cleaning`
+This is the biggest part of the unit tests. It goes through the cleaning pipeline and prints input/output for every indivual function for every value individually. A list of input and expected data is present in the folder `unit_tests` where I added the data from the excel sheet plus a few more random examples. The point is that by adding new values here you can easily test if a new value will pass the cleaning pipeline, and if not where the error is exactly. If the source data gets bigger this will be a great help to test out new values that might not be cleaned correctly.
+
+- `test_dimensionality`
+Small test to check if a unit string is converted correctly and accepted by `pint` as a unit and if the accepted unit matches the expected unit. `pint` can be very picky about which unit to accept and which ones it doesn't and sometimes it misinterprets units. This function is intended to catch that early on.
+
+
+## expansion
+
+Ideally I would expand this program with more unit tests and more regex rules to convert if I had more time (and more sample data)
+
+## Instructions
+- clone this github repo
+	- `git clone https://github.com/LarsRTijssen/Matmatch_Python_Developer_Test`
 - Build the Docker image
     - `./build.sh`
 - Run the Docker image with optional arguments
@@ -9,3 +65,11 @@
 
 `<INPUT_FILE>` is a location to the input file (default: `./data_input/data_input.xlsx`)\n
 `<FORMAT>` must either be `csv`, `json` or `xlsx` (default: `xlsx`)
+
+## Speed
+
+I tested the program with the following input variations on my local pc:
+
+5 rows, 6 variables: `~1.5 s`
+1k rows, 6 variables: `~15 s`
+10k rows, 6 variables: `~30 s`

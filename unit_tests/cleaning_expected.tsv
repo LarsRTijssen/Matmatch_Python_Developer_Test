@@ -1,7 +1,32 @@
-# this is a list of expected results for the function pre-cleaning
+# this is a list of expected results for the cleaning pipeline
 
+# output
 0.000011
 0.000007
 0.0000079,0.000011
 0.00001;20
 0.0000105
+2.5,3
+1.675
+2.7,3
+6.5,8
+6.04;23
+-0.0000138
+2681,2847
+2715
+
+
+######## extra
+# length
+5000
+3.3528,3.9624
+0.1905
+2.92608,3.93192
+
+# pressure
+600
+1013.25
+
+# mixed
+0.0000004;20
+460,500;20
