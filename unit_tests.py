@@ -115,6 +115,6 @@ def test_cleaning():
 		print('final = {}'.format(d.values))
 		print('expct = {}'.format(dc.values))
 
-		pdt.assert_series_equal(d, c)
+		pdt.assert_series_equal(d, dc)
 
 		print('-'*100)

@@ -27,7 +27,11 @@
 60000 Pa						hPa
 760 torr						hPa
 
+#temp
+11 - 13 x 10-6/K for 20C		1/K
+
 # mixed
 4E-7 Ω·m at 20 °C				Ω·m
 460 - 500 J/(kg·K) at 20 °C		J/(kg*K)
+
 

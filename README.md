@@ -37,16 +37,15 @@ The following table gives a good overview of the functions
 
 | Steps | Function name | example | description |
 | --- | --- | --- | --- |
-| Input | --- |'11 x 10-6/K' | --- |
-| Step1 | pre_cleaning | '11e-6/K' | --- |
-| Step2 | extract_groups |['11' 'e-6' nan nan nan '/K' nan nan nan] | --- |
-| Step3 | clean_extractions |['11' 'e-6' '' '' '' '/K' '' '' ''] | --- |
-| Step4 | clean_units |['11' 'e-6' '' '' '' '1/K' '' '' ''] | --- |
-| Step5 | combine_num_pow |[1.1e-05 'e-6' '' nan '' '1/K' '' '' ''] | --- |
-| Step6 | unit_to_standard_unit |[1.1e-05 'e-6' '' nan '' '1/K' '' '' ''] | --- |
-| Step7 | num_to_decimal_string |['0.000011' 'e-6' '' '' '' '1/K' '' '' ''] | --- |
-| Final | combine_strings |'0.000011' | --- |
-| Expct | --- |'0.000011' | --- |
+| Input | --- | '11 - 13 x 10-6/K for 20C'] | --- |
+| Step1 | pre_cleaning | '11-13e-6/Kfor20C'] | Does some initial cleaning of the output |
+| Step2 | extract_groups | ['11' nan '-' '13' 'e-6' '/K' 'for' '20' 'C'] | Extract the different groups using regex |
+| Step3 | clean_extractions | ['11' '' '-' '13' 'e-6' '/K' 'for' '20' 'C'] | Cleaning up of the new dataframe |
+| Step4 | clean_units | ['11' '' '-' '13' 'e-6' '1/K' 'for' '20' 'C'] | Converts unit to pint form |
+| Step5 | combine_num_pow | [1.1e-05 'e-6' '-' 1.3e-05 'e-6' '1/K' 'for' '20' 'C'] | combines number and exponent |
+| Step6 | unit_to_standard_unit | [1.1e-05 'e-6' '-' 1.3e-05 'e-6' '1/K' 'for' '20' 'C'] | Converts number between units |
+| Step7 | num_to_decimal_string | ['0.000011' 'e-6' '-' '0.000013' 'e-6' '1/K' 'for' '20' 'C'] | decimal string format number |
+| Final | combine_strings | '0.000011,0.000013;20' | converts symbols and combines the necessary strings |
 
 Before that, the first function is to standardise the standard units with the version from `pint`
 
