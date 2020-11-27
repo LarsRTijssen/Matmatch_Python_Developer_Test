@@ -15,6 +15,7 @@ This program is designed to import, clean and export a given excel file with mat
 `<INPUT_FILE>` is a location to the input file (default: `./data_input/data_input.xlsx`)\
 `<FORMAT>` must either be `csv`, `json` or `xlsx` (default: `xlsx`)
 
+The newly created file will be available in `./data_output`
 
 ## Structure
 
