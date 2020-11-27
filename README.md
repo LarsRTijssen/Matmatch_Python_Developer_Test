@@ -49,7 +49,7 @@ The following table gives a good overview of the functions.
 | Step7 | num_to_decimal_string | ['0.000011' 'e-6' '-' '0.000013' 'e-6' '1/K' 'for' '20' 'C'] | Format number into decimal string |
 | Final | combine_strings | '0.000011,0.000013;20' | Converts symbols and combines the necessary strings |
 | --- | --- | --- | --- |
-| Side | clean_standard_units |  | Does some regex replacement cleaning of the units from `material_property_map` to make it `pint` compatible |
+| Side | clean_standard_units | √m -> m^(1/2) | Does some regex replacement cleaning of the units from `material_property_map` to make it `pint` compatible |
 
 
 `clean_standard_units` is just a side function and the output gets used by some of the functions in the cleaning pipeline.
@@ -62,9 +62,14 @@ a few functions are present in the `unit_tests.py`. This file is run before `mai
  - `test_cleaning`
 This is the biggest part of the unit tests. It goes through the cleaning pipeline and prints input/output for every indivual function for every value individually. A list of input and expected data is present in the folder `unit_tests` where I added the data from the excel sheet plus a few more random examples. The point is that by adding new values here you can easily test if a new value will pass the cleaning pipeline, and if not where the error is exactly. If the source data gets bigger this will be a great help to test out new values that might not be cleaned correctly.
 
+input is stored in `cleaning_input.tsv`
+expected is stored in `cleaning_expected.tsv`
+
 - `test_dimensionality`
 Small test to check if a unit string is converted correctly and accepted by `pint` as a unit and if the accepted unit matches the expected unit. `pint` can be very picky about which unit to accept and which ones it doesn't and sometimes it misinterprets units. This function is intended to catch that early on.
 
+input is stored in `unit_conversion_test_input.tsv`
+expected is stored in `unit_conversion_test_expected.tsv`
 
 ## Speed
 
