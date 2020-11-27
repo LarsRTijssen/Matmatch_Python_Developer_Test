@@ -5,7 +5,7 @@ This program is designed to import, clean and export a given excel file with mat
 
 ## Instructions
 
-- clone this github repo
+- Clone this github repo
 	- `git clone https://github.com/LarsRTijssen/Matmatch_Python_Developer_Test`
 - Build the Docker image
     - `./build.sh`
